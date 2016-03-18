@@ -3,8 +3,8 @@
 Please read the Your Daddy's Homework Sharing Public License first.  
 请先阅读你爹的作业共享协议(YDHSPL)。
 
-## YOUR DADDY'S HOMEWORK SHARING PUBLIC LICENSE
-## 你爹的作业共享协议
+## COPYCAT'S DADDY'S HOMEWORK SHARING PUBLIC LICENSE
+## 抄袭者他爹的作业共享协议(CDHSPL)
 Version 1.0,  March 2016   
 
 **当您使用这些源代码或程序的时候，即表示您同意并遵守以下协议。**
