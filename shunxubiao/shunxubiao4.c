@@ -13,12 +13,15 @@
 #define MAXLENGTH  6666
 #define debug_num  10
 
-//#define del_member 2014054
+typedef struct tb_stu
+{
+	int member;
+	int score;
+}tbstu;
 
 typedef struct tb_list
 {
-	int member[MAXLENGTH];
-	int score[MAXLENGTH];
+	tbstu data[MAXLENGTH];
 	int length;
 }tblist;
 
@@ -46,7 +49,7 @@ int main()
 	sort(&A);
 	printl(A);
 
-	int del_member = A.member[5];
+	int del_member = 2014000 + rand() % 101;
 	writein(&A, del_member);
 
 	printl(A);
@@ -66,8 +69,8 @@ void buildl(tblist *l)
 	l->length = debug_num;
 	for(i=0;i<debug_num;i++)
 	{
-		l->member[i] = 2014000 + rand() % 101;	
-		l->score[i] = rand() % 101;
+		l->data[i].member = 2014000 + rand() % 101;	
+		l->data[i].score = rand() % 101;
 	}
 }
 
@@ -76,8 +79,8 @@ void printl(tblist l)
 	int i;
 	for(i=0;i<l.length;i++)
 	{
-		printf("%8d",l.member[i]);
-		printf("%5d",l.score[i]);
+		printf("%8d",l.data[i].member);
+		printf("%5d",l.data[i].score);
 	}
 	printf(" end\n");
 }
@@ -99,11 +102,11 @@ bool insert(tblist *l, int i, int mem, int score)
 	int j;
 	for (j=l->length-1;j>=i;j--)
 	{
-		l->member[j+1] = l->member[j];
-		l->score[j+1] = l->score[j];
+		l->data[j+1].member = l->data[j].member;
+		l->data[j+1].score = l->data[j].score;
 	}
-	l->member[i] = mem;
-	l->score[i]  = score;
+	l->data[i].member = mem;
+	l->data[i].score  = score;
 	l->length++;
 	return true;
 }
@@ -119,7 +122,7 @@ bool delete (tblist *l, int i)
 	int j;
 	for(j=i+1;j<l->length;j++)
 	{
-		l->member[j-1] = l->member[j];
+		l->data[j-1].member = l->data[j].member;
 	}
 	l->length--;
 }
@@ -129,10 +132,10 @@ void sort(tblist *l)
 	int i, j;
 	for(i=0;i<l->length-1;i++)
 		for(j=0;j<l->length-i-1;j++)
-			if(l->member[j] > l->member[j+1])
+			if(l->data[j].member > l->data[j+1].member)
 			{
-				swap(&l->member[j], &l->member[j+1]);
-				swap(&l->score[j], &l->score[j+1]);
+				swap(&l->data[j].member, &l->data[j+1].member);
+				swap(&l->data[j].score, &l->data[j+1].score);
 			}
 }
 
@@ -150,10 +153,11 @@ void writein(tblist *l,  int del_m)
 	int i;
 	for(i=0;i<l->length;i++)
 	{
-		if (del_m == l->member[i])
+		if (del_m == l->data[i].member)
 		{
 			delete(l, i);
 			break;
 		}
 	}
+	printf("number %d not found in data\n", del_m);
 }
