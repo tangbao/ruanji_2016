@@ -112,20 +112,20 @@ void compare(tblist *a, tblist b)
 {
 	int i, j, location;
 	bool flag;
-	for(i=0;i<b.length;i++)
+	for(i=0;i<a->length;i++)
 	{
-		flag = false;
-		for(j=0;j<a->length;j++)
+		flag = true;
+		for(j=0;j<b.length;j++)
 		{
-			if(b.member[i] == a->member[j])
+			if(a->member[i] == b.member[j])
 			{	
-				flag = true;
-				location = j;
+				flag = false;
 			}
 		}
 		if (flag)
 		{
-			delete(a, location);
+			delete(a, i);
+			i--;
 		}
 	}
 }
