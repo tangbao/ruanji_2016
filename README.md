@@ -1,4 +1,4 @@
-# UESTC软件技术基础2016作业集
+# UESTC_AUTO计算机软件基础2016作业集
 
 Please read the Copycat's Daddy's Homework Sharing Public License ([CDHSPL](https://github.com/tangbaobao/ruanji_2016/blob/master/license.md)) first.  
 请先阅读抄袭者他爹的作业共享协议([CDHSPL](https://github.com/tangbaobao/ruanji_2016/blob/master/license.md))。
@@ -6,7 +6,20 @@ Please read the Copycat's Daddy's Homework Sharing Public License ([CDHSPL](http
 **当您使用这些源代码或程序的时候，即表示您同意并遵守[CDHSPL](https://github.com/tangbaobao/ruanji_2016/blob/master/license.md)协议。**
 
 ##shunxubiao & lianbiao
-上机作业：用顺序表和链表完成以下程序
+###上机作业：用顺序表和链表完成以下程序  
+1、已知两个集合A、B（成员为整数），求两个集合的并集，结果存放于A中。  
+实现算法思想：依次取B中的一个元素与A中所有元素比较，不相等则插入到A的末尾  
+程序含：1）顺序表/链表结构定义、数据初始化、结果输出；2）交集函数功能定义；3）主程序  
+2、已知两个集合A、B （成员为整数），求两个集合的交集，结果存放于A中。  
+表实现算法思想：依次取A中的一个元素与B中所有元素比较，不相等则从A中删除  
+程序含：1）顺序表/链表结构定义、数据初始化、结果输出；2）并集函数功能定义；3）主程序设计  
+3、习题9：Page 74  
+已知集合A(成员为编号、数学成绩)中所有成员按关键字“编号”递增有序排列，编写程序插入元素X，并保持集合A的递增。  
+实现算法思想：将待插入元素x的成员“编号”按从后向前与A中所有元素的编号比较，插入到表中准确位置，表长增1.  
+程序含：1）顺序表/链表结构定义、数据初始化、结果输出；2）插入函数功能定义；3）主程序  
+4、已知A集合（元素的成员为编号、数学成绩）中的所有元素按关键字“编号”递增有序，编写程序删除元素x  
+实现算法思想：将待删除元素x的成员“编号”与A中所有元素的编号比较，找到则将后面元素依次替换前一个元素位置，表长减1.  
+程序含：1）顺序表/链表结构定义、数据初始化、结果输出；2）删除函数功能定义；3）主程序  
 
 
-
+&copy; Copywrong 2016 Tb.
