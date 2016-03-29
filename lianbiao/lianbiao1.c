@@ -18,16 +18,15 @@ typedef struct tb_node
 	struct tb_node* next;
 }tbnode;
 
-void initll(tbnode **h);
-void insert(tbnode *h,  int x);
-void delete(tbnode *h, int i);
-void buildl(tbnode **h);
-void printl(tbnode *h);
-void compare(tbnode *a, tbnode *b);
+void initll(tbnode **h);                //initate linked list
+void insert(tbnode *h, int i, int x);   //insert x to location i
+void delete(tbnode *h, int i);          //delete location i
+void buildl(tbnode **h);				//make a linked list with random numbers
+void printl(tbnode *h);					//print the linked list
+void compare(tbnode *a, tbnode *b);		//compare two lists to work out numbers both in them
 
 int main()
 {
-	
 	tbnode *A;
 	tbnode *B;
 	initll(&A);
@@ -48,25 +47,51 @@ void initll(tbnode **h)
 {
 	*h = (tbnode*) malloc (sizeof(tbnode));
 	(*h)->next = NULL;
+	(*h)->data = 0;
 }
 
-void insert(tbnode *h,  int x)
+void insert(tbnode *h,  int i,  int x)
 {
 	tbnode *p, *t;
-	int j;
+	int j = 0;
 	p = h;
-	j = 0;
-	while(p->next)
+
+	while(p && j<i-1)
+	{
 		p = p->next;
+		j++;
+	}
+	if (j!=i-1)
+	{
+		printf("invalid i");
+		return;
+	}
 	t = (tbnode*) malloc (sizeof(tbnode));
 	t->data = x;
+	(*h).data ++;
 	t->next = p->next;
 	p->next = t;
 }
 
 void delete(tbnode *h, int i)
 {
-
+	tbnode *p, *s;
+	int j = 0;
+	p = h;
+	while(p->next && j<i-1)
+	{
+		p = p->next;
+		j++;
+	}
+	if (j!=i-1)
+	{
+			printf("invalid i");
+			return;
+	}
+	s = p->next;
+	p->next = s->next;
+	(*h).data--;
+	free(s);
 }
 
 void buildl(tbnode **h)
@@ -74,7 +99,7 @@ void buildl(tbnode **h)
 	tbnode *p = *h;
 	int i;
 	for (i=0;i<debug_num;i++)
-		insert(*h, rand() % 101);
+		insert(*h, (*h)->data+1, rand() % 101);
 }
 
 void printl(tbnode *h)
@@ -93,13 +118,12 @@ void compare(tbnode *a, tbnode *b)
 {	
 	tbnode *pa = a;
 	tbnode *pb = b;
-	int i=0;
 
 	if(pb && pb->next)
 	{
-		pb = pb->next;
 		if(pa && pa->next)
 		{
+			pb = pb->next;
 			while(pb)
 			{
 				pa = a;
@@ -113,7 +137,7 @@ void compare(tbnode *a, tbnode *b)
 				}
 				if (flag)
 				{
-					insert(a,  pb->data);
+					insert(a, (*a).data+1, pb->data);
 				}
 				pb = pb->next;
 			}
