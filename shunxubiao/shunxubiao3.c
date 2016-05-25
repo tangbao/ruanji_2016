@@ -26,9 +26,10 @@ typedef struct tb_list
 }tblist;
 
 void initlist(tblist *l);	//initial the list
-bool insert(tblist *l, int i, int mem, int score);	//insert mem,score into list
+bool insert(tblist *l, int i, tbstu x);	//insert mem,score into list
 bool delete(tblist *l, int i);
-void writein(tblist *l, int mem, int score);
+void writein(tblist *l, tbstu x);
+tbstu makex(int member, int score);
 
 void sort(tblist *l);
 void swap(int *a, int *b);
@@ -38,6 +39,7 @@ void buildl(tblist *l);
 
 int main()
 {
+	
 	tblist A;
 	initlist(&A);
 
@@ -49,9 +51,9 @@ int main()
 	sort(&A);
 	printl(A);
 
-	int insert_number = 2014000 + rand() % 101;
-	int insert_score  = rand() % 101;
-	writein(&A, insert_member, insert_score);
+	tbstu x = makex(2014000 + rand() % 101, rand() % 101);
+	printf("被插入的学号为 %d, 被插入的成绩为 %d\n", x.member, x.score);
+	writein(&A, x);
 
 	printl(A);
 
@@ -81,12 +83,13 @@ void printl(tblist l)
 	for(i=0;i<l.length;i++)
 	{
 		printf("%8d",l.data[i].member);
-		printf("%5d",l.data[i].score);
+		printf("%4d",l.data[i].score);
+		putchar('\n');
 	}
 	printf(" end\n");
 }
 
-bool insert(tblist *l, int i, int mem, int score)
+bool insert(tblist *l, int i, tbstu x)
 {
 	if(l->length>=MAXLENGTH)
 	{
@@ -106,8 +109,8 @@ bool insert(tblist *l, int i, int mem, int score)
 		l->data[j+1].member = l->data[j].member;
 		l->data[j+1].score  = l->data[j].score;
 	}
-	l->data[i].member = mem;
-	l->data[i].score  = score;
+	l->data[i].member = x.member;
+	l->data[i].score  = x.score;
 	l->length++;
 	return true;
 }
@@ -149,15 +152,23 @@ void swap(int *a, int *b)
 
 }
 
-void writein(tblist *l, int mem, int score)
+tbstu makex(int member, int score)
+{
+	tbstu x;
+	x.member = member;
+	x.score = score;
+	return x;
+}
+
+void writein(tblist *l, tbstu x)
 {
 	int i;
 	bool flag;
 	for(i=0;i<l->length;i++)
 	{
-		if (mem <= l->data[i].member)
+		if (x.member <= l->data[i].member)
 		{
-			insert(l, i, mem, score);
+			insert(l, i, x);
 			break;
 		}
 	}
